@@ -1,5 +1,7 @@
 # BsonSerDesSampleCSharp
 
+[![.NET](https://github.com/drumath2237/BsonSerDesSampleCSharp/actions/workflows/dotnet.yml/badge.svg)](https://github.com/drumath2237/BsonSerDesSampleCSharp/actions/workflows/dotnet.yml)
+
 ## About
 
 C#でBSONデータをシリアライズ/デシリアライズするサンプル（コンソールアプリ）です。
