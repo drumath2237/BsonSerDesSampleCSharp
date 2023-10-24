@@ -3,7 +3,7 @@ using Newtonsoft.Json.Bson;
 
 namespace BsonSerDesSampleCSharp;
 
-public static class BsonUtility
+public static class BsonFileUtility
 {
     public static async Task SerializeAndWriteFileAsync<T>(string filePath, T data, CancellationToken token = default)
     {
@@ -12,13 +12,12 @@ public static class BsonUtility
 
         var serializer = new JsonSerializer();
         serializer.Serialize(bsonDataWriter, data);
-
         var bsonData = stream.ToArray();
 
         await File.WriteAllBytesAsync(filePath, bsonData, token);
     }
 
-    public static async Task<T?> LoadFromFile<T>(string filePath, CancellationToken token = default)
+    public static async Task<T?> LoadFromFileAsync<T>(string filePath, CancellationToken token = default)
     {
         var bsonData = await File.ReadAllBytesAsync(filePath, token);
 
@@ -26,8 +25,8 @@ public static class BsonUtility
         using var bsonDataReader = new BsonDataReader(stream);
 
         var serializer = new JsonSerializer();
-        var sensorData = serializer.Deserialize<T>(bsonDataReader);
+        var data = serializer.Deserialize<T>(bsonDataReader);
 
-        return sensorData;
+        return data;
     }
 }
